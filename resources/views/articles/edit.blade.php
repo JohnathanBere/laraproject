@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    Edit Article
+    Edit Broadcast
 @stop
 
 @section('content')
@@ -9,6 +9,6 @@
 
     <h2>Edit {{ $article->title }}</h2>
     {!! Form::model($article, ['method' => 'PUT', 'url' => 'articles/' . $article->id]) !!}
-        @include('articles._form', ['submitButtonText' => 'Update Article'])
+        @include('articles._form', ['submitButtonText' => 'Update Broadcast'])
     {!! Form::close() !!}
 @stop

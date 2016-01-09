@@ -14,12 +14,21 @@ class Article extends Model
 		'user_id'
 	];
 
-	public function user() {
-		return $this->belongsTo('\App\User');
-	}
-
 	//Permits the use of published_at to bes used as a data in its own right.
 	protected $dates = ['published_at'];
+
+	public function user() {
+		return $this->belongsTo('\App\User', 'user_id');
+	}
+
+	public function tags() {
+		return $this->belongsToMany('\App\Tag');
+	}
+
+	public function getTagListAttribute() {
+		return $this->tags->lists('id');
+	}
+
 
 	public function setPublishedAtAttribute($date) {
 		$this->attributes['published_at'] = Carbon::parse($date);
@@ -32,4 +41,5 @@ class Article extends Model
 	public function scopeUnPublished($query) {
 		$query->where('published_at', '>', Carbon::now());
 	}
+
 }

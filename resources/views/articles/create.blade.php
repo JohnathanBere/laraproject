@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    Create Article
+    Create Broadcast
 @stop
 
 @section('content')
@@ -10,6 +10,6 @@
 
     <h2>Create Article</h2>
     {!! Form::open(['url' => 'articles']) !!}
-        @include('articles._form', ['submitButtonText' => 'Add Article'])
+        @include('articles._form', ['submitButtonText' => 'Add Broadcast'])
     {!! Form::close() !!}
 @stop
