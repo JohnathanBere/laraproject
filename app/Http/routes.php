@@ -18,7 +18,7 @@ Route::get('/', function () {
 Route::get('about', 'PagesController@showAbout');
 Route::resource('articles', 'ArticlesController');
 
-Route::resource('tasks', 'TaskController');
+Route::resource('task', 'TaskController');
 
 // Authentication routes
 
