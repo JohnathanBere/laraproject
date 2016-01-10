@@ -10,7 +10,7 @@
 
 <div class="form-group">
     {!! Form::label('published_at', "Publish On:") !!}
-    {!! Form::input('date', 'published_at', date('d-m-Y'), ['class' => 'form-control']) !!}
+    {!! Form::input('date', 'published_at', \Carbon\Carbon::now(), ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
