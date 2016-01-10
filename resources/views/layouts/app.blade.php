@@ -10,12 +10,19 @@
 <body>
 
 <div class="container">
+    <h1>TaskManager</h1>
+    <header>
+        <nav>
+            <li><a href="/task">Home</a></li>
+            <li><a href="/task/create">Make a new task</a></li>
+        </nav>
         @if(Session::has('flash_message'))
             <div class="alert alert-success">
-                {{--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>--}}
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 {{ Session::get('flash_message') }}
             </div>
         @endif
+    </header>
     @yield('content')
 </div>
 

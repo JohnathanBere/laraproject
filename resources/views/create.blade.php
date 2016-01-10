@@ -16,14 +16,6 @@
     </div>
 
     <div class="form-group">
-        {!! Form::select('category', ['Family' => 'Family', 'Work' => 'Work', 'Other' => 'Other'], null, ['class' => 'form-control']) !!}
-    </div>
-
-    <div class="form-group">
-        {!! Form::date('date', null, ['class' => 'form-control']) !!}
-    </div>
-
-    <div class="form-group">
         {!! Form::submit('Submit', ['class' => 'form-control btn btn-success']) !!}
     </div>
 

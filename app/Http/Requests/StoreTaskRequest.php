@@ -24,9 +24,7 @@ class StoreTaskRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required|alpha_num|min:2',
-            'category' => 'required',
-            'date' => 'required'
+            'name' => 'required|alpha_num|min:5'
         ];
     }
 }

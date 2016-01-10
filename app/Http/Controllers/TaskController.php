@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Commands\StoreTaskCommand;
 use Illuminate\Http\Request;
-
+use App\Task;
 use App\Http\Requests;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Controllers\Controller;
+use Symfony\Component\HttpKernel\HttpCache\Store;
 
 class TaskController extends Controller
 {
@@ -17,7 +19,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = array();
+        $tasks = Task::all();
         $heading = 'My tasks';
         return view('tasks', array('tasks' => $tasks, 'heading' => $heading));
     }
@@ -40,7 +42,16 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-        return 'Task successfully added!';
+        // Get input
+        $name = $request->input('name');
+
+        // Instantiates Command
+        $command = new StoreTaskCommand($name);
+
+        // Runs command
+        $this->dispatch($command);
+
+        return \Redirect::route('task.index')->with('flash_message', 'Task Added');
     }
 
     /**
@@ -51,8 +62,8 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        $tasks = array('One', 'Two', 'Three');
-        return view('show', array('task_name' => $tasks[$id]));
+        $task = Task::find($id);
+        return view('show', array('task' => $task));
     }
 
     /**
