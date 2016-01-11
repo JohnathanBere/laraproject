@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Commands\DestroyTaskCommand;
 use App\Commands\StoreTaskCommand;
+use App\Commands\UpdateTaskCommand;
 use Illuminate\Http\Request;
 use App\Task;
 use App\Http\Requests;
@@ -74,7 +76,8 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        return('task/'.$id.'/edit');
+        $task = Task::find($id);
+        return view('edit', array('task' => $task));
     }
 
     /**
@@ -86,7 +89,16 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return('Task/update'.$id);
+        // Get input
+        $name = $request->input('name');
+
+        // Instantiates Command
+        $command = new UpdateTaskCommand($id, $name);
+
+        // Runs command
+        $this->dispatch($command);
+
+        return \Redirect::route('task.index')->with('flash_message', 'Task Updated');
     }
 
     /**
@@ -97,6 +109,12 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        return('Pop me?'.$id);
+        // Instantiates Command
+        $command = new DestroyTaskCommand($id);
+
+        // Runs command
+        $this->dispatch($command);
+
+        return \Redirect::route('task.index')->with('flash_message', 'Task Removed');
     }
 }
