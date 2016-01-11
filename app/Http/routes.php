@@ -20,7 +20,7 @@ Route::resource('articles', 'ArticlesController');
 
 Route::resource('task', 'TaskController');
 
-// Authentication routes
+// Authentication routes NOTE implicit functions >get  >post etc.
 
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');

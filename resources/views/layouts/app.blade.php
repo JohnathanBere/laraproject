@@ -14,7 +14,15 @@
     <header>
         <nav>
             <li><a href="/task">Home</a></li>
-            <li><a href="/task/create">Make a new task</a></li>
+            @if(!Auth::guest())
+                <li><a href="/task/create">Make a new task</a></li>
+            @endif
+            @if(Auth::guest())
+                <li><a href="/auth/login">Login</a></li>
+            @endif
+            @if(!Auth::guest())
+                <li><a href="/auth/logout">Logout</a></li>
+            @endif
         </nav>
         @if(Session::has('flash_message'))
             <div class="alert alert-success">
@@ -23,6 +31,9 @@
             </div>
         @endif
     </header>
+    @foreach($errors->all() as $error)
+        <p> {{ $error }}</p>
+    @endforeach
     @yield('content')
 </div>
 

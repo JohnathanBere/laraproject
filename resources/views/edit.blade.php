@@ -3,10 +3,6 @@
     Edit Task
 @stop
 
-@foreach($errors->all() as $error)
-    <p> {{ $error }}</p>
-@endforeach
-
 @section('content')
     <h1>Edit a task</h1>
     {!! Form::open(array('action' => ['TaskController@update', $task->id], 'method' => 'POST')) !!}

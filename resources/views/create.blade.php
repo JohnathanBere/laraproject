@@ -3,10 +3,6 @@
     Create Task
 @stop
 
-@foreach($errors->all() as $error)
-    <p> {{ $error }}</p>
-@endforeach
-
 @section('content')
     <h1>Create a task</h1>
     {!! Form::open(['action' => 'TaskController@store']) !!}
